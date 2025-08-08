@@ -1,0 +1,143 @@
+/* style.css */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa; /* Light grey background */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.slide {
+    min-height: 100vh; /* Each slide takes full viewport height */
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden; /* Hide anything that goes beyond the slide */
+    display: flex; /* Use flexbox for vertical centering */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+/* Specific styling for text and images within slides */
+.slide h1, .slide h2, .slide h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 600; /* Make headings bolder */
+}
+
+.slide p, .slide ul {
+    font-size: 1.15rem;
+    max-width: 800px; /* Constrain text width for readability */
+    margin-left: auto;
+    margin-right: auto;
+    color: #343a40; /* Darker text color */
+}
+
+.slide ul {
+    padding-left: 20px;
+    list-style-type: none; /* Remove default list style */
+}
+
+.slide ul li {
+    margin-bottom: 0.75rem;
+}
+
+.slide .list-group-item {
+    font-size: 1.1rem;
+    border-color: rgba(0,0,0,0.05);
+}
+
+.slide img {
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* More pronounced shadow */
+    max-width: 100%; /* Ensure images are responsive */
+    height: auto;
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.slide img:hover {
+    transform: translateY(-5px); /* Lift image on hover */
+}
+
+/* Background colors for slides */
+#slide1, #slide6, #slide9 {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white;
+}
+
+#slide1 p.lead {
+    font-size: 1.5rem;
+}
+
+#slide1 h1 {
+    font-size: 3.5rem;
+}
+
+#slide1 p {
+    color: rgba(255,255,255,0.9);
+}
+
+#slide1, #slide10 {
+    min-height: 80vh; /* Slightly smaller for intro/outro */
+}
+
+#slide10 {
+    background-color: #343a40; /* Bootstrap dark */
+    color: white;
+}
+
+#slide2, #slide4, #slide7 {
+    background-color: #f8f9fa; /* Bootstrap light */
+}
+
+#slide3, #slide5, #slide8 {
+    background-color: #ffffff; /* White background */
+}
+
+/* Adjust image sizes for smaller screens */
+@media (max-width: 992px) {
+    .slide img {
+        max-height: 300px !important; /* Adjust max-height for tablets */
+    }
+    .slide h1 {
+        font-size: 2.8rem;
+    }
+    .slide h2 {
+        font-size: 2.2rem;
+    }
+    .slide h3 {
+        font-size: 1.8rem;
+    }
+    .slide p, .slide ul {
+        font-size: 1rem;
+    }
+    .slide .list-group-item {
+        font-size: 0.95rem;
+    }
+    .slide .col-md-6 {
+        margin-bottom: 2rem; /* Add space between columns on small screens */
+    }
+}
+
+@media (max-width: 767px) {
+    .slide img {
+        max-height: 200px !important; /* Further reduce max-height on mobile */
+    }
+    .slide h1 {
+        font-size: 2rem;
+    }
+    .slide h2 {
+        font-size: 1.7rem;
+    }
+    .slide h3 {
+        font-size: 1.4rem;
+    }
+    .slide p, .slide ul {
+        font-size: 0.9rem;
+    }
+    .slide .col-md-6 {
+        margin-bottom: 2rem; /* Add space between columns on small screens */
+    }
+    .slide .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+

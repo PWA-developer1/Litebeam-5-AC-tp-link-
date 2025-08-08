@@ -1,0 +1,235 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Configuración: LiteBeam 5 AC y Tenda Router</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <!-- Slide 1: Title Slide -->
+        <section id="slide1" class="slide d-flex align-items-center justify-content-center text-center bg-primary text-white">
+            <div>
+                <h1 class="display-3">Guía de Instalación y Configuración</h1>
+                <p class="lead">LiteBeam 5AC y Router Tenda</p>
+                <p class="mt-4">¡Todo lo que necesitas saber para tener tu red funcionando!</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Equipos Necesarios -->
+        <section id="slide2" class="slide d-flex align-items-center bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">Equipos Necesarios</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="litebeam_device.png" alt="LiteBeam 5AC" class="img-fluid mb-3" style="max-height: 300px;">
+                        <h3>Ubiquiti LiteBeam 5AC</h3>
+                        <p>Dispositivo airMAX AC de 5 GHz con un diseño ligero y compacto, ideal para enlaces punto a punto o multipunto de corto a mediano alcance.</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="tenda_router.png" alt="Router Tenda" class="img-fluid mb-3" style="max-height: 300px;">
+                        <h3>Router Tenda</h3>
+                        <p>Un router doméstico común de la marca Tenda (ej. Serie AC) para crear y distribuir una red Wi-Fi local.</p>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush mt-4 mx-auto" style="max-width: 600px;">
+                    <li class="list-group-item"><i class="bi bi-ethernet-fill me-2 text-primary"></i> Cable Ethernet Cat5e/Cat6</li>
+                    <li class="list-group-item"><i class="bi bi-lightning-fill me-2 text-primary"></i> Fuente de alimentación PoE (Power over Ethernet - incluida con LiteBeam)</li>
+                    <li class="list-group-item"><i class="bi bi-laptop-fill me-2 text-primary"></i> Computadora (Windows, macOS o Linux) para configuración inicial</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 3: LiteBeam 5 AC - Introducción y Conexiones Físicas -->
+        <section id="slide3" class="slide d-flex align-items-center bg-white">
+            <div class="container">
+                <h2 class="text-center mb-5">LiteBeam 5AC: Instalación Física</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-md-2 text-center">
+                        <img src="litebeam_connections.png" alt="Conexiones LiteBeam 5AC" class="img-fluid" style="max-height: 400px;">
+                        <p class="mt-2 text-muted">Diagrama de Conexión del LiteBeam 5AC con su inyector PoE.</p>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <h3>1. Montaje del Dispositivo</h3>
+                        <p>El LiteBeam 5AC está diseñado para ser montado en exteriores, típicamente en un poste o mástil. Es crucial que tenga una línea de visión clara hacia el punto con el que se va a comunicar (otro LiteBeam, AP, etc.) o hacia el área a la que proporcionará cobertura.</p>
+                        <h3>2. Conexión de Alimentación y Red</h3>
+                        <p><strong>a.</strong> Conecta un cable Ethernet del LiteBeam al puerto "PoE" del inyector PoE.</p>
+                        <p><strong>b.</strong> Conecta un segundo cable Ethernet del puerto "LAN" del inyector PoE a tu computadora. Esta conexión es temporal y solo para la configuración inicial.</p>
+                        <p><strong>c.</strong> Conecta el cable de alimentación del inyector PoE a una toma de corriente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: LiteBeam 5 AC - Acceso Inicial y Configuración Básica (Parte 1) -->
+        <section id="slide4" class="slide d-flex align-items-center bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">LiteBeam 5AC: Configuración de Red</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="litebeam_login.png" alt="LiteBeam Login" class="img-fluid mb-4" style="max-height: 300px;">
+                        <img src="litebeam_network_mode.png" alt="LiteBeam Network Mode" class="img-fluid" style="max-height: 400px;">
+                        <p class="mt-2 text-muted">Interfaz de AirOS: Acceso y Configuración de Modo de Red.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>1. Configurar IP de tu PC</h3>
+                        <p>Antes de acceder al LiteBeam, debes configurar la dirección IP de tu computadora a una dirección estática dentro del mismo segmento de red que la IP por defecto del LiteBeam. Por ejemplo, asigna <code>192.168.1.10</code> con máscara de subred <code>255.255.255.0</code>. La IP por defecto del LiteBeam es <code>192.168.1.20</code>.</p>
+                        <h3>2. Acceso al Interfaz Web (AirOS)</h3>
+                        <p>Abre tu navegador web y navega a <code>https://192.168.1.20</code>. Es posible que veas una advertencia de seguridad; acéptala y procede. El usuario por defecto es <code>ubnt</code> y la contraseña también es <code>ubnt</code>. Se te pedirá cambiarla en el primer inicio de sesión, lo cual es altamente recomendado por seguridad.</p>
+                        <h3>3. Modo de Red: Bridge</h3>
+                        <p>En la interfaz de AirOS, ve a la pestaña "Network". Asegúrate de que el "Network Mode" esté configurado en <strong>Bridge</strong>. Esto es crucial si el LiteBeam va a funcionar como un "cable largo" que simplemente extiende la conexión de red al router Tenda, permitiendo que el Tenda gestione las IPs.</p>
+                        <p class="small text-muted"><em>Nota: Si el LiteBeam es el punto de origen de la red y el Tenda actuará solo como AP, la configuración podría variar. Aquí asumimos el LiteBeam como un puente.</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: LiteBeam 5 AC - Configuración Wireless (Parte 2) -->
+        <section id="slide5" class="slide d-flex align-items-center bg-white">
+            <div class="container">
+                <h2 class="text-center mb-5">LiteBeam 5AC: Configuración Inalámbrica</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-md-2 text-center">
+                        <img src="litebeam_wireless_mode.png" alt="LiteBeam Wireless Mode" class="img-fluid mb-4" style="max-height: 400px;">
+                        <img src="litebeam_wireless_settings.png" alt="LiteBeam Wireless Settings" class="img-fluid" style="max-height: 400px;">
+                        <p class="mt-2 text-muted">Configuración de Modo y Parámetros Inalámbricos en AirOS.</p>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <h3>1. Modo Inalámbrico</h3>
+                        <p>En la pestaña "Wireless", selecciona el "Wireless Mode" adecuado según tu escenario:</p>
+                        <ul>
+                            <li><strong>Access Point:</strong> Si el LiteBeam va a ser el emisor de la señal, al que se conectarán otros dispositivos (ej. otro LiteBeam en modo Station o un cliente Wi-Fi).</li>
+                            <li><strong>Station:</strong> Si el LiteBeam se conectará a otro punto de acceso existente (ej. a otro LiteBeam configurado como Access Point).</li>
+                        </ul>
+                        <h3>2. Configuración de Wi-Fi</h3>
+                        <p>Configura los siguientes parámetros esenciales:</p>
+                        <ul>
+                            <li><strong>SSID:</strong> El nombre de la red inalámbrica que el LiteBeam emitirá o a la que se conectará.</li>
+                            <li><strong>Channel Width:</strong> Ancho de canal (ej. 20/40/80 MHz). Un ancho mayor ofrece más velocidad pero es más susceptible a interferencias.</li>
+                            <li><strong>Frequency (MHz):</strong> Frecuencia de operación. Puedes elegir una fija o dejar en "Auto".</li>
+                            <li><strong>Security:</strong> Selecciona <strong>WPA2-AES</strong> (AES) para la mejor seguridad. Establece una contraseña fuerte y única.</li>
+                        </ul>
+                        <h3>3. Guardar Cambios y Aplicar</h3>
+                        <p>Aplica los cambios y espera a que el dispositivo se reinicie. Una vez reiniciado, tu LiteBeam estará configurado para operar en el modo inalámbrico deseado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Tenda Router - Introducción y Conexiones Físicas -->
+        <section id="slide6" class="slide d-flex align-items-center bg-primary text-white">
+            <div class="container">
+                <h2 class="text-center mb-5">Router Tenda: Introducción y Conexión Física</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="tenda_connections.png" alt="Conexiones Router Tenda" class="img-fluid" style="max-height: 400px;">
+                        <p class="mt-2 text-muted">Diagrama de Conexión del LiteBeam con el Router Tenda.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>1. Propósito del Router Tenda</h3>
+                        <p>El router Tenda será el cerebro de tu red local. Su función principal es tomar la conexión de internet (que viene del LiteBeam) y distribuirla a todos tus dispositivos, tanto a través de sus puertos LAN como por medio de su señal Wi-Fi.</p>
+                        <h3>2. Conexión de Red</h3>
+                        <p><strong>a.</strong> Desconecta tu PC del inyector PoE del LiteBeam.</p>
+                        <p><strong>b.</strong> Conecta un cable Ethernet desde el puerto "LAN" del inyector PoE (donde estaba tu PC) al puerto <strong>WAN</strong> (generalmente de un color diferente, como azul) del router Tenda.</p>
+                        <p><strong>c.</strong> Conecta el router Tenda a la corriente eléctrica.</p>
+                        <h3>3. Conexión para Configuración</h3>
+                        <p>Puedes conectar tu computadora a uno de los puertos <strong>LAN</strong> del router Tenda (los que no son WAN), o conectarte a la red Wi-Fi por defecto que el Tenda emite (el nombre y la contraseña se encuentran en una pegatina en la parte inferior del router).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Tenda Router - Acceso Inicial y Configuración de Internet -->
+        <section id="slide7" class="slide d-flex align-items-center bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">Router Tenda: Configuración de Internet</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6 order-md-2 text-center">
+                        <img src="tenda_login.png" alt="Tenda Login" class="img-fluid mb-4" style="max-height: 300px;">
+                        <img src="tenda_wan_setup.png" alt="Tenda WAN Setup" class="img-fluid" style="max-height: 400px;">
+                        <p class="mt-2 text-muted">Interfaz de Tenda: Acceso y Configuración de Conexión WAN.</p>
+                    </div>
+                    <div class="col-md-6 order-md-1">
+                        <h3>1. Acceso al Interfaz Web</h3>
+                        <p>Conecta tu PC al router Tenda (vía cable LAN o Wi-Fi). Abre tu navegador y accede a la dirección IP por defecto del router Tenda (comúnmente <code>192.168.0.1</code> o <code>192.168.1.1</code>). Si es la primera vez que accedes, el router te guiará para establecer una contraseña de administración. <strong>¡Es fundamental que cambies la contraseña por defecto!</strong></p>
+                        <h3>2. Configuración de WAN (Internet)</h3>
+                        <p>En la sección "Internet Settings", "WAN Settings" o similar, selecciona <strong>"Dynamic IP"</strong> (o DHCP). Esta es la configuración más común cuando el LiteBeam está en modo Bridge y simplemente retransmite la conexión de internet de tu proveedor, o si el LiteBeam actúa como un punto de acceso a otra red que asigna IPs automáticamente.</p>
+                        <p class="small text-muted"><em>Si tu proveedor de internet requiere PPPoE o tiene una IP estática, deberías seleccionar esas opciones y rellenar los datos correspondientes. Esta guía asume DHCP para simplificar.</em></p>
+                        <h3>3. Guardar y Reiniciar</h3>
+                        <p>Aplica los cambios y el router Tenda se reiniciará. Una vez que el LED de Internet se ponga fijo, debería tener conexión a la red externa a través del LiteBeam.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Tenda Router - Configuración Wi-Fi -->
+        <section id="slide8" class="slide d-flex align-items-center bg-white">
+            <div class="container">
+                <h2 class="text-center mb-5">Router Tenda: Configuración Wi-Fi</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="tenda_wifi_settings.png" alt="Tenda WiFi Settings" class="img-fluid" style="max-height: 400px;">
+                        <p class="mt-2 text-muted">Configuración de Nombres y Contraseñas de Red Wi-Fi en Tenda.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>1. Nombres de Red (SSID)</h3>
+                        <p>Dirígete a la sección "Wireless Settings", "Wi-Fi Settings" o "Configuración Inalámbrica". Cambia el "Wi-Fi Name" (SSID) por uno que sea fácil de recordar e identificar, por ejemplo, "MiCasa_WiFi". Si tu router es doble banda (2.4GHz y 5GHz), puedes configurarlos por separado o con el mismo nombre si tiene "Smart Connect".</p>
+                        <h3>2. Contraseña Wi-Fi</h3>
+                        <p>En el campo "Wi-Fi Password" o "Security Key", establece una contraseña fuerte y segura para tu red. Utiliza una combinación de al menos 8 caracteres, incluyendo letras mayúsculas, minúsculas, números y símbolos. Esto protegerá tu red de accesos no autorizados.</p>
+                        <h3>3. Modos de Operación (Opcional)</h3>
+                        <p>Asegúrate de que el modo de operación del router Tenda esté en <strong>"Router"</strong>. Esto es lo más común para que gestione direcciones IP locales (DHCP Server) y el firewall.</p>
+                        <h3>4. Aplicar y Reiniciar</h3>
+                        <p>Guarda todos los cambios realizados. El router se reiniciará para aplicar la nueva configuración Wi-Fi. Una vez que vuelva a estar en línea, tu nueva red Wi-Fi estará disponible para que tus dispositivos se conecten.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Verificación y Pruebas -->
+        <section id="slide9" class="slide d-flex align-items-center bg-primary text-white">
+            <div class="container text-center">
+                <h2 class="mb-4">¡Verificación y Pruebas!</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <p class="lead">Una vez que ambos dispositivos estén configurados, es hora de verificar que todo funciona correctamente.</p>
+                        <ul class="list-unstyled text-start mx-auto" style="max-width: 600px;">
+                            <li class="mb-3"><i class="bi bi-wifi me-3 text-warning"></i> Conecta un dispositivo (teléfono, laptop, tablet) a la nueva red Wi-Fi que configuraste en el router Tenda.</li>
+                            <li class="mb-3"><i class="bi bi-globe me-3 text-warning"></i> Abre un navegador web e intenta acceder a varios sitios de internet (ej. google.com, youtube.com). Si puedes navegar, ¡felicidades!</li>
+                            <li class="mb-3"><i class="bi bi-lightbulb me-3 text-warning"></i> Verifica las luces LED en ambos dispositivos:
+                                <ul>
+                                    <li><strong>LiteBeam:</strong> Las luces de señal deben indicar una buena conexión si está en modo Station. La luz de Ethernet debe estar encendida.</li>
+                                    <li><strong>Tenda:</strong> La luz de "Internet" o "WAN" debe estar encendida y, preferiblemente, fija, indicando una conexión activa. Las luces de los puertos LAN utilizados y la luz de Wi-Fi también deben estar activas.</li>
+                                </ul>
+                            </li>
+                            <li class="mb-3"><i class="bi bi-tools me-3 text-warning"></i> Si encuentras problemas, revisa los pasos anteriores con atención:
+                                <ul>
+                                    <li>Asegúrate de que todos los cables estén bien conectados.</li>
+                                    <li>Verifica las configuraciones de IP y modo de red en ambos dispositivos.</li>
+                                    <li>Asegúrate de que las contraseñas Wi-Fi coincidan.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Conclusión -->
+        <section id="slide10" class="slide d-flex align-items-center justify-content-center text-center bg-dark text-white">
+            <div>
+                <h2 class="display-4">¡Has Configurado tu Red con Éxito!</h2>
+                <p class="lead">Esperamos que esta guía detallada te haya sido de gran ayuda para instalar y configurar tu LiteBeam 5AC y Router Tenda.</p>
+                <p class="mt-4">¡Disfruta de tu nueva conexión de internet de alta velocidad!</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
